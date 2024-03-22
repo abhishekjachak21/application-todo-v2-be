@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 
 //routes import
-import router from './routes/task.routes.js'
+import router from './src/routes/task.routes.js'
 
 
 //routes declaration

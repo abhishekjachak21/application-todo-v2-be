@@ -28,15 +28,15 @@ export const deleteTask = asyncHandler(async (req, res) => {
 });
 
 // // Update a task
-// export const updateTask = asyncHandler(async (req, res) => {
-//   const { writeTask, targetTime, completed } = req.body;
-//   let task = await Task.findById(req.params.id);
-//   if (!task) {
-//     throw new ApiError(404, 'Task not found');
-//   }
-//   if (writeTask) task.writeTask = writeTask;
-//   if (targetTime) task.targetTime = targetTime;
-//   if (completed !== undefined) task.completed = completed;
-//   task = await task.save();
-//   res.status(200).json(task);
-// });
+export const updateTask = asyncHandler(async (req, res) => {
+  const { writeTask, targetTime, completed } = req.body;
+  let task = await Task.findById(req.params.id);
+  if (!task) {
+    throw new ApiError(404, 'Task not found');
+  }
+  if (writeTask) task.writeTask = writeTask;
+  if (targetTime) task.targetTime = targetTime;
+  if (completed !== undefined) task.completed = completed;
+  task = await task.save();
+  res.status(200).json(task);
+});

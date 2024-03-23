@@ -1,12 +1,19 @@
 // require('dotenv').config({path: './env'})
-import dotenv from '/opt/render/project/node_modules/dotenv';
+
 // import connectDB from "./db/index.js";
 import connectDB from "./src/DB/index.js";
 import {app} from './app.js'
+// import dotenv from 'dotenv';
 // dotenv.config({
 //     path: './.env'
 // })
-dotenv.config();
+
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({
+    path: path.resolve(__dirname, '.env')
+});
 
 
 

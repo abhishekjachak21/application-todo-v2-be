@@ -6,7 +6,7 @@
 // routes/taskRoutes.js
 
 import express from 'express';
-import { getAllTasks, addTask, deleteTask } from '../controllers/task.controller.js';
+import { getAllTasks, addTask, deleteTask,updateTask  } from '../controllers/task.controller.js';
 // import  } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -25,6 +25,7 @@ router.route('/addTask').post(addTask);
 // Route to delete a task
 // router.delete('/:id', deleteTask);
 router.route('/:id').delete(deleteTask);
+router.route('/:id').patch(updateTask);
 
 // Route to update a task
 // router.put('/:id', updateTask);

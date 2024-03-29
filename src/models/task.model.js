@@ -1,5 +1,6 @@
 // models/task.model.js
 import mongoose from 'mongoose';
+// import userSchema from './user.model.js'
 
 const taskSchema = new mongoose.Schema({
   writeTask: {
@@ -17,7 +18,16 @@ const taskSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     default: false
+  },
+  // username: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User', // Reference to the User model
+  //   // required: true
+  username: {
+    type: String, // Assuming username is a string field
+    // required: true
   }
+
   
 }, 
 { timestamps: true }
@@ -29,47 +39,3 @@ export default Task;
 
 
 
-
-
-
-
-// userSchema.pre("save", async function (next) {
-//   if(!this.isModified("password")) return next();
-
-//   this.password = await bcrypt.hash(this.password, 10)
-//   next()
-// })
-
-// userSchema.methods.isPasswordCorrect = async function(password){
-//   return await bcrypt.compare(password, this.password)
-// }
-
-// userSchema.methods.generateAccessToken = function(){
-//   return jwt.sign(
-//       {
-//           _id: this._id,
-//           email: this.email,
-//           username: this.username,
-//           fullName: this.fullName
-//       },
-//       process.env.ACCESS_TOKEN_SECRET,
-//       {
-//           expiresIn: process.env.ACCESS_TOKEN_EXPIRY
-//       }
-//   )
-// }
-// userSchema.methods.generateRefreshToken = function(){
-//   return jwt.sign(
-//       {
-//           _id: this._id,
-          
-//       },
-//       process.env.REFRESH_TOKEN_SECRET,
-//       {
-//           expiresIn: process.env.REFRESH_TOKEN_EXPIRY
-//       }
-//   )
-// }
-
-
-// export const User = mongoose.model("User", userSchema);

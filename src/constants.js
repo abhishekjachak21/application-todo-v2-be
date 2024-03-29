@@ -1,1 +1,1 @@
-export const DB_NAME = 'oneDAYtry'
+export const DB_NAME = 'TMT_2DB'

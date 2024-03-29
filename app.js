@@ -16,11 +16,13 @@ app.use(cookieParser())
 
 
 //routes import
-import router from './src/routes/task.routes.js'
+import userRouter from './src/routes/user.routes.js'
+import taskRouter from './src/routes/task.routes.js'
 
 
 //routes declaration
-app.use("/api/tasks", router)
+app.use("/api/users", userRouter)
+app.use("/api/tasks", taskRouter)
 
 // http://localhost:8000/api/tasks/getAllTasks
 // http://localhost:8000/api/tasks/addTask

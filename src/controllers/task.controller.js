@@ -1,6 +1,7 @@
 // controllers/taskController.js
 
 import Task from '../models/task.model.js';
+import {User} from '../models/user.model.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
@@ -16,14 +17,41 @@ async function getAllTasks(req, res) {
     }
 }
 
+// // Function to add a new task
+// async function addTask(req, res) {
+//     const { writeTask, targetTime, userId } = req.body;
+//  console.log(req.body);
+//     try {
+//         const user = await User.findById(userId);
+//         if (!user) {
+//             throw new ApiError(400, 'User not found');
+//         }
+
+//         const newTask = new Task({
+//             writeTask,
+//             targetTime,
+//             username:userId,
+//             completed: false,
+//             actualTime: null
+//         });
+
+//         await newTask.save();
+//         res.status(201).json(newTask);
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// }
+
+
 // Function to add a new task
 async function addTask(req, res) {
     const { writeTask, targetTime } = req.body;
-
+console.log(req.body);
     try {
         const newTask = new Task({
             writeTask,
             targetTime,
+            // username,
             completed: false,
             actualTime: null
         });
@@ -122,93 +150,3 @@ export {
 
 
 
-
-
-
-
-
-/*
-// Get all tasks
-export const getAllTasks = asyncHandler(async (req, res) => {
-    
-    const allTasks = await Task.find();
-
-    res
-    .status(200)
-    .json(new ApiResponse(
-      201,{allTasks},"all task fetched successfully"));
-});
-
-
-
-
-// Add a new task
-// export const addTask = asyncHandler(async (req, res, next) => {
-//   const { writeTask, targetTime } = req.body;
-
-//   if (!writeTask) {
-//     return next(new ApiError(400, "Both 'writeTask' are required"));
-//   }
-//   if (!targetTime) {
-//     return next(new ApiError(400, "Both 'targetTime' are required"));
-//   }
-//   // Create a new task instance
-//   const task = new Task({ writeTask, targetTime, completed: false });
-
-//   // Save the task to the database
-//   await task.save();
-
-//   res.status(201).json({
-//     success: true,
-//     data: task
-//   });
-// });
-
-
-// Other controller functions omitted for brevity
-
-
-
-
-
-// // Add a new task
-export const addTask = asyncHandler(async (req, res) => {
-  const { writeTask, targetTime, completed } = req.body;
-  const oneTask = await Task.create({ writeTask, targetTime, completed });
-  res
-  .status(200)
-  .json(new ApiResponse(201,{oneTask},"Added task successfully"));
-});
-
-
-// Delete a task
-export const deleteTask = asyncHandler(async (req, res) => {
-  const task = await Task.findById(req.params.id);
- 
-  if (!task) {
-    throw new ApiError(404, 'Task not found');
-  }
- 
-  await task.remove();
-  res.status(200).json({ message: 'Task removed' });
-});
-
-
-
-
-
-
-// // Update a task
-export const updateTask = asyncHandler(async (req, res) => {
-  const { writeTask, targetTime, completed } = req.body;
-  let task = await Task.findById(req.params.id);
-  if (!task) {
-    throw new ApiError(404, 'Task not found');
-  }
-  if (writeTask) task.writeTask = writeTask;
-  if (targetTime) task.targetTime = targetTime;
-  if (completed !== undefined) task.completed = completed;
-  task = await task.save();
-  res.status(200).json(task);
-});
-*/

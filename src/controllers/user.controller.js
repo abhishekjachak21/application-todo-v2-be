@@ -5,7 +5,7 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 // Function to handle user information
 const userInfo = async (req, res) => {
     const { username, userage, studyingProfession, oneBigAchievement,  nextGoal } = req.body;
-
+console.log("userInfo: ", req.body);
     try {
         // Check if any required fields are missing
         if (!username || !userage || !nextGoal) {

@@ -1,1 +1,1 @@
-export const DB_NAME = 'TMT_2DB'
+export const DB_NAME = 'todoAppV2'
